@@ -18,7 +18,27 @@ nvm use && make
 
 ## Design
 
-> 🚧 Placeholder
+### Domain Entities
+
+-   **Specification** - An [OpenAPI](https://www.openapis.org) specification, `openapi.json` or `openapi.yaml`.
+-   **Specification Rendering** - A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system where the rendered files are contained will be maintained by this entity.
+-   **Git Platform** (GitLab, GitHub, Bitbucket)
+-   **Git Platform Group** - A collection of one or more Git Repositories contained within a Git Platform.
+-   **Git Repository**
+-   **Git Commit**
+-   **Git Tag**
+-   **Git Branch**
+-   **User** (Unauthenticated, Standard, Administrator, Autonomous)
+-   **Historical Fact** - Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to populate each projection. This represents an event sourced pattern.
+-   **Projection** - A view of the data populated from the log of Historical Facts.
+
+### Domain Use Cases
+
+-   **Discover New Specifications**
+-   **Check for Updated Specifications**
+-   **Render Specification**
+-   **Search for Specifications**
+-   **Browse Specifications**
 
 ## License
 
