@@ -12,8 +12,13 @@ Discover projects within a hosted git platform that contain an OpenAPI Specifica
 
 ## Getting Started
 
+| Env                 |     |
+| ------------------- | --- |
+| `APIS_GITLAB_TOKEN` |     |
+| `APIS_GITLAB_URL`   |     |
+
 ```shell
-nvm use && make
+nvm use && make && ./spectacle --help
 ```
 
 ## Design
@@ -21,7 +26,8 @@ nvm use && make
 ### Domain Entities
 
 -   **Specification** - An [OpenAPI](https://www.openapis.org) specification, `openapi.json` or `openapi.yaml`.
--   **Specification Rendering** - A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system where the rendered files are contained will be maintained by this entity.
+-   **Specification Rendering** - A Specification that has been rendered into html + js + css for display. A reference to
+    a directory in the file system where the rendered files are contained will be maintained by this entity.
 -   **Git Platform** (GitLab, GitHub, Bitbucket)
 -   **Git Platform Group** - A collection of one or more Git Repositories contained within a Git Platform.
 -   **Git Repository**
@@ -29,7 +35,8 @@ nvm use && make
 -   **Git Tag**
 -   **Git Branch**
 -   **User** (Unauthenticated, Standard, Administrator, Autonomous)
--   **Historical Fact** - Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to populate each projection. This represents an event sourced pattern.
+-   **Historical Fact** - Interactions with this application are recorded as a series of Historical Facts (Events) that
+    can be replayed to populate each projection. This represents an event sourced pattern.
 -   **Projection** - A view of the data populated from the log of Historical Facts.
 
 ### Domain Use Cases

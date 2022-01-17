@@ -1,5 +1,18 @@
-# Don't include IDE configuraiton
-/.idea/
-
 # Don't include external dependencies
+/vendor/
 /node_modules/
+
+# Don't include IDE configuration
+/.idea
+
+# Don't include logs
+*.log
+
+# Don't include coverage reports
+coverage.txt
+
+# Don't include build output
+/spectacle
+
+# Keep this file even if directory has been ignored
+!.keep
