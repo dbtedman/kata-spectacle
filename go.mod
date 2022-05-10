@@ -1,6 +1,6 @@
 module github.com/dbtedman/kata-spectacle
 
-go 1.16
+go 1.17
 
 require (
 	github.com/spf13/cobra v1.2.1
