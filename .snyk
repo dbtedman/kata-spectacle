@@ -1,0 +1,10 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-GOLANG-GOPKGINYAMLV2-2840885:
+    - '*':
+        reason: "YAML comes from trusted source currently so risk is minimal for this vuln."
+        expires: 2022-06-22T09:59:34.429Z
+        created: 2022-05-23T09:59:34.436Z
+version: v1.25.0
+patch: {}
