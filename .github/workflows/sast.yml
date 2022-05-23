@@ -55,5 +55,4 @@ jobs:
                   node-version-file: ".nvmrc"
                   cache: "pnpm"
             - run: "make install"
-            - run: "make compile"
             - uses: "github/codeql-action/analyze@v2"
