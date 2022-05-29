@@ -1,11 +1,11 @@
-package domain
+package discover
 
 import (
-	"github.com/dbtedman/kata-spectacle/internal/gateway"
+	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
 )
 
 type Discover struct {
-	GitLab gateway.GitLab
+	GitLab gitlab.GitLab
 }
 
 type DiscoverRequest struct {

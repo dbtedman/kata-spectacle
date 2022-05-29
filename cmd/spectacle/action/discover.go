@@ -1,19 +1,19 @@
-package cmd
+package action
 
 import (
 	"fmt"
-	"github.com/dbtedman/kata-spectacle/internal/domain"
-	"github.com/dbtedman/kata-spectacle/internal/gateway"
+	"github.com/dbtedman/kata-spectacle/internal/domain/discover"
+	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
 	"github.com/spf13/cobra"
 	"log"
 )
 
 type Discover struct {
-	GitLab gateway.GitLab
+	GitLab gitlab.GitLab
 }
 
 func (receiver Discover) Cmd() *cobra.Command {
-	discover := domain.Discover{
+	discovery := discover.Discover{
 		GitLab: receiver.GitLab,
 	}
 
@@ -22,7 +22,7 @@ func (receiver Discover) Cmd() *cobra.Command {
 		Short: "",
 		Long:  "",
 		Run: func(cmd *cobra.Command, args []string) {
-			results, err := discover.Execute(domain.DiscoverRequest{})
+			results, err := discovery.Execute(discover.DiscoverRequest{})
 
 			if err != nil {
 				log.Fatalln(err)

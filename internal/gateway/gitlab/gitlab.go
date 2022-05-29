@@ -1,4 +1,4 @@
-package gateway
+package gitlab
 
 import (
 	"encoding/json"

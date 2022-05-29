@@ -14,44 +14,65 @@ Discover projects within a hosted git platform that contain an OpenAPI Specifica
 
 ## Getting Started
 
-| Env                 |     |
-| ------------------- | --- |
-| `APIS_GITLAB_TOKEN` |     |
-| `APIS_GITLAB_URL`   |     |
-
 ```shell
 nvm use && make && ./spectacle --help
 ```
 
 ## Design
 
-### Domain Entities
+### Concepts
 
-| Entity                   | Notes                                                                                                                                                                                            |
-| :----------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GitBranch`              |                                                                                                                                                                                                  |
-| `GitCommit`              |                                                                                                                                                                                                  |
-| `GitPlatformGroup`       | A collection of one or more Git Repositories contained within a Git Platform.                                                                                                                    |
-| `GitPlatform`            | (GitLab, GitHub, Bitbucket)                                                                                                                                                                      |
-| `GitRepository`          |                                                                                                                                                                                                  |
-| `GitTag`                 |                                                                                                                                                                                                  |
-| `HistoricalFact`         | Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to populate each projection. This represents an event sourced pattern.             |
-| `Projection`             | A view of the data populated from the log of Historical Facts.                                                                                                                                   |
-| `SpecificationRendering` | A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system where the rendered files are contained will be maintained by this entity. |
-| `Specification`          | An [OpenAPI](https://www.openapis.org) specification, `openapi.json` or `openapi.yaml`.                                                                                                          |
-| `User`                   | (Unauthenticated, Standard, Administrator, Autonomous)                                                                                                                                           |
+_Placeholder_
 
-### Domain Use Cases
+### Domain
 
-| Use Case                        | Notes |
-| :------------------------------ | :---- |
-| `BrowseSpecifications`          |       |
-| `CheckForUpdatedSpecifications` |       |
-| `DiscoverNewSpecifications`     |       |
-| `RenderSpecification`           |       |
-| `SearchForSpecifications`       |       |
+#### [Git Branch]()
+
+_Placeholder_
+
+#### [Git Commit]()
+
+_Placeholder_
+
+#### [Git Platform Group]()
+
+A collection of one or more Git Repositories contained within a Git Platform.
+
+#### [Git Platform]()
+
+(GitLab, GitHub, Bitbucket)
+
+#### [Git Repository]()
+
+_Placeholder_
+
+#### [Git Tag]()
+
+_Placeholder_
+
+#### [Historical Fact]()
+
+Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to populate each projection. This represents an event sourced pattern.
+
+#### [Projection]()
+
+A view of the data populated from the log of Historical Facts.
+
+#### [Specification Rendering]()
+
+A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system where the rendered files are contained will be maintained by this entity.
+
+#### [Specification]()
+
+An [OpenAPI](https://www.openapis.org) specification, `openapi.json` or `openapi.yaml`.
+
+#### [User]()
+
+(Unauthenticated, Standard, Administrator, Autonomous)
 
 ### Gateways
+
+#### [GitLab]()
 
 _Placeholder_
 
