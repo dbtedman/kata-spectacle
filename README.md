@@ -26,53 +26,53 @@ _Placeholder_
 
 ### Domain
 
-#### [Git Branch]()
+#### [Git Branch](./internal/domain/git_branch)
 
 _Placeholder_
 
-#### [Git Commit]()
+#### [Git Commit](./internal/domain/git_commit)
 
 _Placeholder_
 
-#### [Git Platform Group]()
+#### [Git Platform Group](./internal/domain/git_platform_group)
 
 A collection of one or more Git Repositories contained within a Git Platform.
 
-#### [Git Platform]()
+#### [Git Platform](./internal/domain/git_platform)
 
 (GitLab, GitHub, Bitbucket)
 
-#### [Git Repository]()
+#### [Git Repository](./internal/domain/git_repository)
 
 _Placeholder_
 
-#### [Git Tag]()
+#### [Git Tag](./internal/domain/git_tag)
 
 _Placeholder_
 
-#### [Historical Fact]()
+#### [Historical Fact](./internal/domain/historical_fact)
 
 Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to populate each projection. This represents an event sourced pattern.
 
-#### [Projection]()
+#### [Projection](./internal/domain/projection)
 
 A view of the data populated from the log of Historical Facts.
 
-#### [Specification Rendering]()
+#### [Specification Rendering](./internal/domain/specification_rendering)
 
 A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system where the rendered files are contained will be maintained by this entity.
 
-#### [Specification]()
+#### [Specification](./internal/domain/specification)
 
 An [OpenAPI](https://www.openapis.org) specification, `openapi.json` or `openapi.yaml`.
 
-#### [User]()
+#### [User](./internal/domain/user)
 
 (Unauthenticated, Standard, Administrator, Autonomous)
 
 ### Gateways
 
-#### [GitLab]()
+#### [GitLab](./internal/gateway/gitlab)
 
 _Placeholder_
 
