@@ -14,13 +14,35 @@ Discover projects within a hosted git platform that contain an OpenAPI Specifica
 
 ## Getting Started
 
+Install, verify, and build Spectacle binary.
+
 ```shell
-nvm use && make && ./spectacle --help
+nvm use && make
 ```
+
+Learn about the available commands in the help menu.
+
+```shell
+./spectacle --help
+```
+
+See [Commands](#commands) section for more information.
 
 ## Design
 
+### Commands
+
+#### `discover`
+
+Perform discovery operation to find api specifications.
+
+#### `serve`
+
+Start a web server to provide web interface and graphql service.
+
 ### Concepts
+
+#### Event Sourcing
 
 _Placeholder_
 
