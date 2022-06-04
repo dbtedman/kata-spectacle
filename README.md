@@ -1,6 +1,7 @@
 # [Spectacle](https://github.com/dbtedman/kata-spectacle)
 
-> **⚠️ WARNING:** Not production ready code, instead a [Code Kata](https://github.com/dbtedman#code-kata) intended to hone my programming skills through practice and repetition.
+> **⚠️ WARNING:** Not production ready code, instead a [Code Kata](https://github.com/dbtedman#code-kata) intended to
+> hone my programming skills through practice and repetition.
 
 [![ci workflow status](https://img.shields.io/github/workflow/status/dbtedman/kata-spectacle/ci?style=for-the-badge&logo=github&label=ci)](https://github.com/dbtedman/kata-spectacle/actions/workflows/ci.yml)
 [![sast workflow status](https://img.shields.io/github/workflow/status/dbtedman/kata-spectacle/sast?style=for-the-badge&logo=github&label=sast)](https://github.com/dbtedman/kata-spectacle/actions/workflows/sast.yml)
@@ -9,7 +10,9 @@
 Discover projects within a hosted git platform that contain an OpenAPI Specifications so that an index can be generated.
 
 -   [Getting Started](#getting-started)
+-   [Verification](#verification)
 -   [Design](#design)
+-   [References](#references)
 -   [License](#license)
 
 ## Getting Started
@@ -44,7 +47,34 @@ Learn about the available commands in the help menu.
 
 See [Commands](#commands) section for more information.
 
+## Verification
+
+### Linting
+
+-   [Prettier](https://prettier.io)
+-   [gofmt](https://pkg.go.dev/cmd/gofmt)
+
+```shell
+make lint
+```
+
+These rules can then be automatically applied:
+
+```shell
+make format
+```
+
+### Unit Testing
+
+```shell
+make test
+```
+
 ## Design
+
+### Repository Structure
+
+_Placeholder_
 
 ### Commands
 
@@ -60,11 +90,17 @@ Start a web server to provide web interface and graphql service.
 
 #### Noun, Verb Command Line Interface
 
-To provide an easily understood command line interface, the `noun verb` pattern has been chosen. This pattern is similar to resource action pattern seen in web apis. The exception to this pattern is when a verb is used on its own. In this instance, no noun is required. Examples include `serve` and `help`.
+To provide an easily understood command line interface, the `noun verb` pattern has been chosen. This pattern is similar
+to resource action pattern seen in web apis. The exception to this pattern is when a verb is used on its own. In this
+instance, no noun is required. Examples include `serve` and `help`.
 
 #### Event Sourcing
 
 _Placeholder_
+
+#### Internationalization
+
+> 💡️ Perhaps using a package like [nicksnyder/go-i18n](https://github.com/nicksnyder/go-i18n).
 
 ### Domain
 
@@ -94,7 +130,8 @@ _Placeholder_
 
 #### [Historical Fact](./internal/domain/historical_fact)
 
-Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to populate each projection. This represents an event sourced pattern.
+Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to
+populate each projection. This represents an event sourced pattern.
 
 #### [Projection](./internal/domain/projection)
 
@@ -102,7 +139,8 @@ A view of the data populated from the log of Historical Facts.
 
 #### [Specification Rendering](./internal/domain/specification_rendering)
 
-A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system where the rendered files are contained will be maintained by this entity.
+A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system
+where the rendered files are contained will be maintained by this entity.
 
 #### [Specification](./internal/domain/specification)
 
@@ -144,7 +182,8 @@ _Placeholder_
 
 #### [A06:2021-Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
 
-[Snyk](https://snyk.io) and [Github Security](https://github.com/features/security) scan Gradle and NPM dependencies for know vulnerabilities and create pull requests to resolve the vulnerabilities when available.
+[Snyk](https://snyk.io) and [Github Security](https://github.com/features/security) scan Gradle and NPM dependencies for
+know vulnerabilities and create pull requests to resolve the vulnerabilities when available.
 
 #### [A07:2021-Identification and Authentication Failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/)
 
