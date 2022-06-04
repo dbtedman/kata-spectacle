@@ -14,13 +14,10 @@ func main() {
 }
 
 func executeCommand() error {
-	gitlabToken := os.Getenv("APIS_GITLAB_TOKEN")
-	gitlabUrl := os.Getenv("APIS_GITLAB_URL")
-
 	rootCommand := command.Root{
 		GitLab: gitlab.GitLab{
-			Token: gitlabToken,
-			Url:   gitlabUrl,
+			Token: os.Getenv(command.GitLabTokenEnv),
+			Url:   os.Getenv(command.GitLabURLEnv),
 		},
 	}
 

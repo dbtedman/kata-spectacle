@@ -5,6 +5,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// GitLabTokenEnv is the environment variable that contains an access token used to
+// authenticate api calls to GitLab,
+// https://docs.gitlab.com/ee/api/index.html#personalprojectgroup-access-tokens
+const GitLabTokenEnv = "SPECTACLE_GITLAB_TOKEN"
+
+// GitLabURLEnv is the environment variable that defines the base URL for API calls to
+// the GitLab REST API, https://docs.gitlab.com/ee/api/index.html
+const GitLabURLEnv = "SPECTACLE_GITLAB_URL"
+
 type Root struct {
 	GitLab gitlab.GitLab
 }
