@@ -14,7 +14,7 @@ Discover projects within a hosted git platform that contain an OpenAPI Specifica
 
 ## Getting Started
 
-Install, verify, and build Spectacle binary.
+Install, verify, and build `./spectacle` binary.
 
 ```shell
 nvm use && make
