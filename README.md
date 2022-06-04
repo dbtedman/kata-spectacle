@@ -18,7 +18,7 @@ Discover projects within a hosted git platform that contain an OpenAPI Specifica
 
 Begin by [installing Go](https://go.dev/doc/install) if you have not done so already.
 
-You can test your install by calling the `version` command.
+You can test your install by calling the following command:
 
 ```shell
 go version
