@@ -14,11 +14,27 @@ Discover projects within a hosted git platform that contain an OpenAPI Specifica
 
 ## Getting Started
 
+### Prepare
+
+Begin by [installing Go](https://go.dev/doc/install) if you have not done so already.
+
+You can test your install by calling the `version` command.
+
+```shell
+go version
+```
+
+Your version must be greater than or equal to the version defined in `./go.mod` file.
+
+### Install, Verify, and Build
+
 Install, verify, and build `./spectacle` binary.
 
 ```shell
 nvm use && make
 ```
+
+### Help
 
 Learn about the available commands in the help menu.
 
