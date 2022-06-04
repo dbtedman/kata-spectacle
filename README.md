@@ -1,6 +1,6 @@
-# [Kata](https://github.com/dbtedman/kata) // [Spectacle](https://github.com/dbtedman/kata-spectacle)
+# [Spectacle](https://github.com/dbtedman/kata-spectacle)
 
-> ⚠️ WARNING: Not production ready code.
+> **⚠️ WARNING:** Not production ready code, instead a [Code Kata](https://github.com/dbtedman#code-kata) intended to hone my programming skills through practice and repetition.
 
 [![ci workflow status](https://img.shields.io/github/workflow/status/dbtedman/kata-spectacle/ci?style=for-the-badge&logo=github&label=ci)](https://github.com/dbtedman/kata-spectacle/actions/workflows/ci.yml)
 [![sast workflow status](https://img.shields.io/github/workflow/status/dbtedman/kata-spectacle/sast?style=for-the-badge&logo=github&label=sast)](https://github.com/dbtedman/kata-spectacle/actions/workflows/sast.yml)
@@ -57,6 +57,10 @@ Perform discovery operation to find api specifications.
 Start a web server to provide web interface and graphql service.
 
 ### Concepts
+
+#### Noun, Verb Command Line Interface
+
+To provide an easily understood command line interface, the `noun verb` pattern has been chosen. This pattern is similar to resource action pattern seen in web apis. The exception to this pattern is when a verb is used on its own. In this instance, no noun is required. Examples include `serve` and `help`.
 
 #### Event Sourcing
 
@@ -157,6 +161,10 @@ _Placeholder_
 #### [A10:2021-Server-Side Request Forgery](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
 
 _Placeholder_
+
+## References
+
+-   2022-06-04 [Cobra: A Framework for Modern CLI Apps in Go](https://cobra.dev)
 
 ## License
 

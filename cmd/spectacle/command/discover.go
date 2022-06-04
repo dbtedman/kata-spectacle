@@ -1,4 +1,4 @@
-package action
+package command
 
 import (
 	"fmt"
@@ -12,15 +12,13 @@ type Discover struct {
 	GitLab gitlab.GitLab
 }
 
-func (receiver Discover) Cmd() *cobra.Command {
+func (receiver Discover) Cobra() *cobra.Command {
 	discovery := discover.Discover{
 		GitLab: receiver.GitLab,
 	}
 
 	return &cobra.Command{
-		Use:   "discover",
-		Short: "",
-		Long:  "",
+		Use: "discover",
 		Run: func(cmd *cobra.Command, args []string) {
 			results, err := discovery.Execute(discover.DiscoverRequest{})
 
