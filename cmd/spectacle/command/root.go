@@ -13,17 +13,11 @@ func (receiver Root) Cobra() *cobra.Command {
 	rootCommand := &cobra.Command{
 		Use:   "spectacle",
 		Short: "Discover projects within a hosted git platform that contain an OpenAPI Specifications so that an index can be generated.",
-		Run: func(cmd *cobra.Command, args []string) {
-		},
+		Run:   func(cmd *cobra.Command, args []string) {},
 	}
 
-	serveCommand := Serve{}
-	discoverCommand := Discover{
-		GitLab: receiver.GitLab,
-	}
-
-	rootCommand.AddCommand(serveCommand.Cobra())
-	rootCommand.AddCommand(discoverCommand.Cobra())
+	rootCommand.AddCommand(Serve{}.Cobra())
+	rootCommand.AddCommand(Discover{GitLab: receiver.GitLab}.Cobra())
 
 	return rootCommand
 }
