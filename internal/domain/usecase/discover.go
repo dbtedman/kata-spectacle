@@ -1,4 +1,4 @@
-package discover
+package usecase
 
 import (
 	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
@@ -8,25 +8,25 @@ type Discover struct {
 	GitLab gitlab.GitLab
 }
 
-type DiscoverRequest struct {
+type Request struct {
 }
 
-type DiscoverResult struct {
+type Result struct {
 	RepositoryName     string
 	RepositorySpecLink string
 	SpecTitle          string
 	SpecDescription    string
 }
 
-func (receiver Discover) Execute(request DiscoverRequest) ([]DiscoverResult, error) {
+func (receiver Discover) Execute(request Request) ([]Result, error) {
 	gitlabSearchResults, err := receiver.GitLab.Search()
 
-	var results []DiscoverResult
+	var results []Result
 
 	for _, searchResult := range gitlabSearchResults {
 		project, err := receiver.GitLab.GetProject(searchResult.ProjectId)
 		if err != nil {
-			return []DiscoverResult{}, err
+			return []Result{}, err
 		}
 
 		specFile := receiver.GitLab.DownloadFileUrl(
@@ -37,10 +37,10 @@ func (receiver Discover) Execute(request DiscoverRequest) ([]DiscoverResult, err
 
 		spec, err := receiver.GitLab.GetSpec(specFile)
 		if err != nil {
-			return []DiscoverResult{}, err
+			return []Result{}, err
 		}
 
-		results = append(results, DiscoverResult{
+		results = append(results, Result{
 			RepositoryName: project.NameWithNamespace,
 			RepositorySpecLink: receiver.GitLab.BrowseFileUrl(
 				project.WebUrl,

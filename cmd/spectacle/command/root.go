@@ -5,6 +5,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// TODO: The configuration for our gateways may come from either the environment variables
+//       or command line arguments so we may not be able to construct them at the root
+//       command level but rather when a command is executed. It is also the case that not
+//       all commands will require all gateways so constructing them closer to their use
+//       might reduce unnecessary setup.
+
 // GitLabTokenEnv is the environment variable that contains an access token used to
 // authenticate api calls to GitLab,
 // https://docs.gitlab.com/ee/api/index.html#personalprojectgroup-access-tokens

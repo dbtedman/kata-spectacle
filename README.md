@@ -100,55 +100,59 @@ _Placeholder_
 
 #### Internationalization
 
-> 💡️ Perhaps using a package like [nicksnyder/go-i18n](https://github.com/nicksnyder/go-i18n).
+> 💡️ Perhaps using a package like [nicksnyder/go-i18n](https://github.com/nicksnyder/go-i18n). The currently selected language could be discovered from the environment, e.g. `LANG=en_AU.UTF-8` for command line and [Accept-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) header, e.g. `Accept-Language: en-AU,en;q=0.9` for the web ui.
 
-### Domain
+### Domain Entities
 
-#### [Git Branch](./internal/domain/git_branch)
-
-_Placeholder_
-
-#### [Git Commit](./internal/domain/git_commit)
+#### [Git Branch](internal/domain/entity/git_branch)
 
 _Placeholder_
 
-#### [Git Platform Group](./internal/domain/git_platform_group)
+#### [Git Commit](internal/domain/entity/git_commit)
+
+_Placeholder_
+
+#### [Git Platform Group](internal/domain/entity/git_platform_group)
 
 A collection of one or more Git Repositories contained within a Git Platform.
 
-#### [Git Platform](./internal/domain/git_platform)
+#### [Git Platform](internal/domain/entity/git_platform)
 
 (GitLab, GitHub, Bitbucket)
 
-#### [Git Repository](./internal/domain/git_repository)
+#### [Git Repository](internal/domain/entity/git_repository)
 
 _Placeholder_
 
-#### [Git Tag](./internal/domain/git_tag)
+#### [Git Tag](internal/domain/entity/git_tag)
 
 _Placeholder_
 
-#### [Historical Fact](./internal/domain/historical_fact)
+#### [Historical Fact](internal/domain/entity/historical_fact)
 
 Interactions with this application are recorded as a series of Historical Facts (Events) that can be replayed to
 populate each projection. This represents an event sourced pattern.
 
-#### [Projection](./internal/domain/projection)
+#### [Projection](internal/domain/entity/projection)
 
 A view of the data populated from the log of Historical Facts.
 
-#### [Specification Rendering](./internal/domain/specification_rendering)
+#### [Specification Rendering](internal/domain/entity/specification_rendering)
 
 A Specification that has been rendered into html + js + css for display. A reference to a directory in the file system
 where the rendered files are contained will be maintained by this entity.
 
-#### [Specification](./internal/domain/specification)
+#### [Specification](internal/domain/entity/specification)
 
 An [OpenAPI](https://www.openapis.org) specification, `openapi.json` or `openapi.yaml`.
 
-#### [User](./internal/domain/user)
+#### [User](internal/domain/entity/user)
 
 (Unauthenticated, Standard, Administrator, Autonomous)
+
+### Domain Use Cases
+
+_Placeholder_
 
 ### Gateways
 
