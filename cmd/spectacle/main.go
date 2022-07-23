@@ -1,15 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"github.com/dbtedman/kata-spectacle/internal/domain/entity"
 	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
-	"log"
 	"os"
 )
 
 func main() {
 	if err := executeCommand(); err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
+		os.Exit(1)
 	}
 }
 

@@ -5,7 +5,7 @@ import (
 	"github.com/dbtedman/kata-spectacle/internal/domain/usecase"
 	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
 	"github.com/spf13/cobra"
-	"log"
+	"os"
 )
 
 type Discover struct {
@@ -23,12 +23,12 @@ func (receiver Discover) Cobra() *cobra.Command {
 			results, err := discovery.Execute(usecase.Request{})
 
 			if err != nil {
-				log.Fatalln(err)
+				fmt.Println(err)
+				os.Exit(1)
 			}
 
-			// TODO: Would we now write this to file system now?
 			for _, result := range results {
-				fmt.Printf("%+v\n", result)
+				fmt.Printf("%s\n", result.RepositorySpecLink)
 			}
 		},
 	}

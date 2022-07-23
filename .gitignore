@@ -1,6 +1,7 @@
 # Don't include external dependencies
 /vendor/
 /node_modules/
+/.cache/
 
 # Don't include IDE configuration
 /.idea

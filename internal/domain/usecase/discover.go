@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"fmt"
 	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
 )
 
@@ -16,9 +17,12 @@ type Result struct {
 	RepositorySpecLink string
 	SpecTitle          string
 	SpecDescription    string
+	CommitRef          string
 }
 
 func (receiver Discover) Execute(request Request) ([]Result, error) {
+	// TODO: Load existing spec list
+
 	gitlabSearchResults, err := receiver.GitLab.Search()
 
 	var results []Result
@@ -26,18 +30,29 @@ func (receiver Discover) Execute(request Request) ([]Result, error) {
 	for _, searchResult := range gitlabSearchResults {
 		project, err := receiver.GitLab.GetProject(searchResult.ProjectId)
 		if err != nil {
-			return []Result{}, err
+			fmt.Println(err)
+			continue
 		}
+
+		if project.Visibility == "private" {
+			fmt.Printf("%s is private\n", project.WebUrl)
+			continue
+		}
+
+		projectRepositoryBranches, _ := receiver.GitLab.GetProjectRepositoryBranches(searchResult.ProjectId, project.DefaultBranch)
+
+		// If projectRepositoryBranches.Commit.Id has not changed, we don't need to re-fetch the spec
 
 		specFile := receiver.GitLab.DownloadFileUrl(
 			searchResult.ProjectId,
 			searchResult.Path,
-			project.DefaultBranch,
+			projectRepositoryBranches.Commit.Id,
 		)
 
 		spec, err := receiver.GitLab.GetSpec(specFile)
 		if err != nil {
-			return []Result{}, err
+			fmt.Println(err)
+			continue
 		}
 
 		results = append(results, Result{
@@ -49,8 +64,11 @@ func (receiver Discover) Execute(request Request) ([]Result, error) {
 			),
 			SpecTitle:       spec.Info.Title,
 			SpecDescription: spec.Info.Description,
+			CommitRef:       projectRepositoryBranches.Commit.Id,
 		})
 	}
+
+	// TODO: Save updated spec list
 
 	return results, err
 }
