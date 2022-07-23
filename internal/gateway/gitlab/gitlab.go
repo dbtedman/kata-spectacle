@@ -6,11 +6,13 @@ import (
 	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 )
+
+const SearchResultsPerPage = 1000
 
 type GitLab struct {
 	Config ConfigReader
@@ -62,11 +64,13 @@ func (receiver GitLab) Search() ([]SearchQueryResult, error) {
 
 	req, err := http.NewRequest(
 		"GET",
-		receiver.Config.ReadUrl()+"/api/v4/search?scope=blobs&search=filename:openapi.yaml&per_page=10",
+		fmt.Sprintf(
+			"%s/api/v4/search?scope=blobs&search=filename:openapi.yaml&per_page=%d",
+			receiver.Config.ReadUrl(),
+			SearchResultsPerPage,
+		),
 		nil,
 	)
-
-	log.Println(req.URL)
 
 	if err != nil {
 		return []SearchQueryResult{}, err
@@ -74,7 +78,6 @@ func (receiver GitLab) Search() ([]SearchQueryResult, error) {
 
 	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
-	log.Println(req.URL)
 	resp, err := client.Do(req)
 
 	if err != nil {
@@ -84,18 +87,20 @@ func (receiver GitLab) Search() ([]SearchQueryResult, error) {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
 		}
 	}(resp.Body)
 
 	bodyString, bodyStringError := io.ReadAll(resp.Body)
 
 	if bodyStringError != nil {
-		log.Fatal(bodyStringError)
+		fmt.Println(bodyStringError)
+		os.Exit(1)
 	}
 
 	if resp.StatusCode != 200 {
-		log.Fatal(string(bodyString))
+		fmt.Println(string(bodyString))
+		os.Exit(1)
 	}
 
 	var results []SearchQueryResult
@@ -122,7 +127,6 @@ func (receiver GitLab) GetProject(projectId int) (ProjectResult, error) {
 
 	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
-	log.Println(req.URL)
 	resp, err := client.Do(req)
 
 	if err != nil {
@@ -132,7 +136,8 @@ func (receiver GitLab) GetProject(projectId int) (ProjectResult, error) {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
+			os.Exit(1)
 		}
 	}(resp.Body)
 
@@ -160,7 +165,6 @@ func (receiver GitLab) GetProjectRepositoryBranches(projectId int, branch string
 
 	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
-	log.Println(req.URL)
 	resp, err := client.Do(req)
 
 	if err != nil {
@@ -170,7 +174,8 @@ func (receiver GitLab) GetProjectRepositoryBranches(projectId int, branch string
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
+			os.Exit(1)
 		}
 	}(resp.Body)
 
@@ -216,7 +221,6 @@ func (receiver GitLab) GetSpec(specUrl string) (OpenAPISpec, error) {
 
 	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
-	log.Println(req.URL)
 	resp, err := client.Do(req)
 
 	if err != nil {
@@ -226,14 +230,16 @@ func (receiver GitLab) GetSpec(specUrl string) (OpenAPISpec, error) {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
+			os.Exit(1)
 		}
 	}(resp.Body)
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
+		os.Exit(1)
 	}
 
 	var spec OpenAPISpec

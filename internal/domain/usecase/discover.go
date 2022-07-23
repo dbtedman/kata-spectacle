@@ -1,8 +1,8 @@
 package usecase
 
 import (
+	"fmt"
 	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"
-	"log"
 )
 
 type Discover struct {
@@ -30,12 +30,12 @@ func (receiver Discover) Execute(request Request) ([]Result, error) {
 	for _, searchResult := range gitlabSearchResults {
 		project, err := receiver.GitLab.GetProject(searchResult.ProjectId)
 		if err != nil {
-			log.Println(err)
+			fmt.Println(err)
 			continue
 		}
 
 		if project.Visibility == "private" {
-			log.Printf("%s is private", project.WebUrl)
+			fmt.Printf("%s is private\n", project.WebUrl)
 			continue
 		}
 
@@ -51,7 +51,7 @@ func (receiver Discover) Execute(request Request) ([]Result, error) {
 
 		spec, err := receiver.GitLab.GetSpec(specFile)
 		if err != nil {
-			log.Println(err)
+			fmt.Println(err)
 			continue
 		}
 
