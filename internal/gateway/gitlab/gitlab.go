@@ -12,8 +12,12 @@ import (
 )
 
 type GitLab struct {
-	Token string
-	Url   string
+	Config ConfigReader
+}
+
+type ConfigReader interface {
+	ReadToken() string
+	ReadUrl() string
 }
 
 type SearchQueryResult struct {
@@ -48,7 +52,7 @@ func (receiver GitLab) Search() ([]SearchQueryResult, error) {
 
 	req, err := http.NewRequest(
 		"GET",
-		receiver.Url+"/api/v4/search?scope=blobs&search=filename:openapi.yaml&per_page=5",
+		receiver.Config.ReadUrl()+"/api/v4/search?scope=blobs&search=filename:openapi.yaml&per_page=5",
 		nil,
 	)
 
@@ -56,7 +60,7 @@ func (receiver GitLab) Search() ([]SearchQueryResult, error) {
 		return []SearchQueryResult{}, err
 	}
 
-	req.Header.Add("PRIVATE-TOKEN", receiver.Token)
+	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
 	resp, err := client.Do(req)
 
@@ -85,7 +89,7 @@ func (receiver GitLab) GetProject(projectId int) (ProjectResult, error) {
 
 	req, err := http.NewRequest(
 		"GET",
-		fmt.Sprintf(receiver.Url+"/api/v4/projects/%d", projectId),
+		fmt.Sprintf(receiver.Config.ReadUrl()+"/api/v4/projects/%d", projectId),
 		nil,
 	)
 
@@ -93,7 +97,7 @@ func (receiver GitLab) GetProject(projectId int) (ProjectResult, error) {
 		return ProjectResult{}, err
 	}
 
-	req.Header.Add("PRIVATE-TOKEN", receiver.Token)
+	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
 	resp, err := client.Do(req)
 
@@ -119,7 +123,7 @@ func (receiver GitLab) GetProject(projectId int) (ProjectResult, error) {
 
 func (receiver GitLab) DownloadFileUrl(projectId int, filePath string, branchName string) string {
 	return fmt.Sprintf(
-		receiver.Url+"/api/v4/projects/%d/repository/files/%s/raw?ref=%s",
+		receiver.Config.ReadUrl()+"/api/v4/projects/%d/repository/files/%s/raw?ref=%s",
 		projectId,
 		url.QueryEscape(filePath),
 		branchName,
@@ -148,7 +152,7 @@ func (receiver GitLab) GetSpec(specUrl string) (OpenAPISpec, error) {
 		return OpenAPISpec{}, err
 	}
 
-	req.Header.Add("PRIVATE-TOKEN", receiver.Token)
+	req.Header.Add("PRIVATE-TOKEN", receiver.Config.ReadToken())
 
 	resp, err := client.Do(req)
 

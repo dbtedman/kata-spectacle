@@ -1,4 +1,4 @@
-package command
+package main
 
 import (
 	"github.com/dbtedman/kata-spectacle/internal/gateway/gitlab"

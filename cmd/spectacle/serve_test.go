@@ -1,19 +1,19 @@
-package command_test
+package main_test
 
 import (
-	"github.com/dbtedman/kata-spectacle/cmd/spectacle/command"
+	"github.com/dbtedman/kata-spectacle/cmd/spectacle"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestServeCobra(t *testing.T) {
-	serveCommand := command.Serve{}
+	serveCommand := main.Serve{}
 
 	assert.NotNil(t, serveCommand.Cobra())
 }
 
 func TestServeCobraExecute(t *testing.T) {
-	serveCommand := command.Serve{}
+	serveCommand := main.Serve{}
 	serveCommandCobra := serveCommand.Cobra()
 
 	assert.Nil(t, serveCommandCobra.Execute())

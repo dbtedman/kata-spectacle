@@ -1,19 +1,19 @@
-package command_test
+package main_test
 
 import (
-	"github.com/dbtedman/kata-spectacle/cmd/spectacle/command"
+	"github.com/dbtedman/kata-spectacle/cmd/spectacle"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestRootCobra(t *testing.T) {
-	rootCommand := command.Root{}
+	rootCommand := main.Root{}
 
 	assert.NotNil(t, rootCommand.Cobra())
 }
 
 func TestRootCobraExecute(t *testing.T) {
-	rootCommand := command.Root{}
+	rootCommand := main.Root{}
 	rootCommandCobra := rootCommand.Cobra()
 
 	assert.Nil(t, rootCommandCobra.Execute())
