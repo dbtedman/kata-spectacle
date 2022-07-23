@@ -26,7 +26,7 @@ func (receiver Discover) Cobra() *cobra.Command {
 				log.Fatalln(err)
 			}
 
-			// TODO: Would we now write this to file system now?
+			// TODO: Switch to just presenting summary
 			for _, result := range results {
 				fmt.Printf("%+v\n", result)
 			}
